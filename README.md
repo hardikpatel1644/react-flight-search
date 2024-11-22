@@ -1,70 +1,119 @@
-# Getting Started with Create React App
+# React + Rapid API + Material UI: Google Flights Search
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A simple React application for searching flights, inspired by Google Flights. This app utilizes the **Sky Scraper API** from RapidAPI and **Material UI** to provide a responsive and user-friendly flight search experience.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## Features
+- **API Configurations**: Managed in a `.env` file for flexibility.
+- **Sample Data Option**: Use mock data for testing by setting `REACT_APP_USE_SAMPLE_DATA` to `true`.
+- **Flight Search**: Filter flights by origin, destination, departure date, return date, and number of travelers (adults).
+- **Responsive Design**: Built with Material UI for optimal display on various devices.
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Setup Instructions
+Follow these steps to set up and run the project locally:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 1. Clone the Repository
+```bash
+git clone https://github.com/yourusername/flight-search-app.git
+```
 
-### `npm test`
+### 2. Install Dependencies
+Navigate to the project folder and install required packages:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+cd flight-search-app
+npm install
+```
 
-### `npm run build`
+### 3. Configure Environment Variables
+Create a .env file (if not already present) in the root directory with the following configurations:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```plaintext
+REACT_APP_RAPID_API_KEY=Your-API-KEY
+REACT_APP_RAPID_API_HOST=sky-scrapper.p.rapidapi.com
+REACT_APP_RAPID_API_VERSION_1=api/v1
+REACT_APP_RAPID_API_VERSION_2=api/v2
+REACT_APP_RAPID_API_SHORT_BY=best
+REACT_APP_RAPID_API_CURRENCY=USD
+REACT_APP_RAPID_API_MARKET=en-US
+REACT_APP_RAPID_API_COUNTRY_CODE=US
+REACT_APP_USE_SAMPLE_DATA=false
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+To use sample data instead of live API data, update:
 
-### `npm run eject`
+```plaintext
+REACT_APP_USE_SAMPLE_DATA=true
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### 4. Start the Application
+Run the development server:
+```bash
+npm start
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## How to Use
+1. Enter the required details in the search form:
+  - Origin
+  - Destination: Auto-populated based on the origin.
+  - Departure and Return Dates
+  - Cabin Class
+  - Number of Travelers
+2. Click Search.
+3. View available flights fetched from the API or sample data (if enabled).
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## API Details
+### Sky Scraper API
+The Sky Scraper API provides real-time data on flights, hotels, rental cars, and more. It is ideal for creating travel websites similar to Skyscanner or Booking.com.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+#### API Key
+Register on RapidAPI and retrieve your API key to use this service. Add the key to your .env file as shown above.
 
-### Code Splitting
+#### Endpoints and Parameters
+- Search Airport
+  URL: https://sky-scrapper.p.rapidapi.com/api/v1/flights/searchAirport
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+  Example Parameters:
+  ```plaintext
+    {
+        query: 'new',
+        locale: 'en-US'
+    }
+  ```
 
-### Analyzing the Bundle Size
+- Search Flights
+  URL: https://sky-scrapper.p.rapidapi.com/api/v2/flights/searchFlightsWebComplete
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+  Example Parameters:
+  ```plaintext
+    {
+        originSkyId: 'JFK',
+        destinationSkyId: 'MIA',
+        originEntityId: '95565058',
+        destinationEntityId: '95673821',
+        cabinClass: 'economy',
+        adults: '1',
+        sortBy: 'best',
+        currency: 'USD',
+        market: 'en-US',
+        countryCode: 'US'
+    }
+  ```
+---
+## License
+This project is licensed under the MIT License. See the LICENSE file for details.
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+--- 
+## Acknowledgments
+- <a href="https://rapidapi.com/">RapidAPI</a> for providing the Sky Scraper API.
+- <a href="https://mui.com/">Material UI</a> for the responsive design framework.
+- Inspired by the simplicity and utility of Google Flights.
